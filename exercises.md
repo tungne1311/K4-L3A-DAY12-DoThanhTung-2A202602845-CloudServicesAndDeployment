@@ -50,12 +50,12 @@ docker images | grep agent
 
 | Bản | Dung lượng |
 |-----|-----------|
-| 1 stage (bản đầu) | ... MB |
+| 1 stage (bản đầu) | 1730 MB (1.73 GB) |
 | Multi-stage | 271 MB |
 
 Giải thích: phần dung lượng chênh lệch đó là những gì?
 
-Giải thích: bản 1 stage dùng python:3.11 đầy đủ, trong đó có sẵn compiler gcc, header để build thư viện C, git và nhiều gói hệ điều hành mà app không cần khi chạy. Nó còn giữ pip cache và copy cả thư mục tests, tài liệu vào image.
+Giải thích: bản multi-stage nhỏ hơn khoảng 1460 MB, tức chỉ bằng khoảng 16 phần trăm bản 1 stage. Bản 1 stage dùng python:3.11 đầy đủ, trong đó có sẵn compiler gcc, header để build thư viện C, git và nhiều gói hệ điều hành mà app không cần khi chạy. Nó còn giữ pip cache và copy cả thư mục tests, tài liệu vào image.
 
 Bản multi-stage dùng python:3.11-slim, chỉ copy thư viện đã cài từ stage builder sang cùng hai thư mục app và utils. Phần chênh lệch chính là công cụ build và gói hệ điều hành dư thừa đó.
 
